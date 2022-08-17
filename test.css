@@ -1,180 +1,41 @@
 * {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: #8C858E;
 }
 
-$cat_main: #444444;
-$cat_eye: #222;
-
-body {
-  padding: 0;
-  margin: 0;
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  background: #E9A6A6;
+#left-eye, #right-eye {
+      animation: open-eye 2s infinite forwards;
+      animation-delay: 2s;
+      opacity: 0;
 }
 
-.frame {
-  width: 300px;
-  height: 300px;
-  border: solid 1px #1C0C5B;
-  position: relative;
-  background: #916BBF;
- }
-
-@mixin trap($width, $border-bottom, $skew) {
-  width: $width;
-  border-bottom: $border-bottom solid $cat_main;
-  border-left: $skew solid transparent;
-  border-right: $skew solid transparent;
+#letter, #rigth-arm {
+  animation: move 3s infinite alternate ease-in-out;
+   animation-delay: 2s;
 }
 
-@mixin stripe {
-  width: 8px;
-  height: 12px;
-  position: absolute;
-  background: pink;
-}
-
-@mixin eye {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: $cat_eye;
-}
-
-@mixin whisker {
-  width: 6px;
-  height: 40px;
-  background: $cat_eye;
-}
-.face {
-  position: absolute;
-  bottom: 0;
-  right: 80px;
-  @include trap(200px, 120px, 40px);
-  
-  .stripes {
-    @include stripe;
-    top: 2px;
-    &:nth-child(1) {
-      left: 42%;
-    }
-    &:nth-child(2) {
-      right: 42%;
-    }
+@keyframes open-eye {
+  50% {
+    opacity: 0;
   }
-  
-  .l-ear {
-    position: absolute;
-    top: 0;
-    transform: translateY(-100%);
-    @include trap(55px, 25px, 8px);
-    
-    &:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      transform: translateY(-40%);
-      display: inline-block;
-      background: $cat_main;
-      width: 39px;
-      height: 39px;
-      border-radius: 100%;
-    }
+   55% {
+    opacity: 0.9;
   }
-  
-  .r-ear {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateY(-100%);
-    @include trap(55px, 25px, 8px);
-    
-    &:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      transform: translateY(-40%);
-      display: inline-block;
-      background: $cat_main;
-      width: 39px;
-      height: 39px;
-      border-radius: 100%;
-    }
+  60% {
+    opacity: 1;
   }
-  
-  .l-eye {
-    position: absolute;
-    @include eye;
-    left: 22%;
-    top: 25px;
-  }
-  
-  .r-eye {
-    position: absolute;
-    @include eye;
-    right: 22%;
-    top: 25px;
-  }
-  
-  .whiskers {
-    @include whisker;
-    position: absolute;
-    top: 25px;
-    &:nth-child(7) {
-      transform: rotate(70deg);
-      right: 0;
-    }
-    &:nth-child(8) {
-      transform: translateY(50%) rotate(110deg);
-      right: 0;
-    }
-    &:nth-child(9) {
-      transform: rotate(-70deg);
-      left: 0;
-    }
-    &:nth-child(10) {
-      transform: translateY(50%) rotate(-110deg);
-      left: 0;
-    }
-  }
-  
-  .nose {
-    background: $cat_eye;
-    width: 15px;
-    height: 20px;
-    position: absolute;
-    left: 50%;
-    top: 50px;
-    transform: translateX(-50%);
-    border-radius: 50% 50% 50% 50% / 26% 26% 74% 74% ;
-    
+  100% {
+    opacity: 1;
   }
 }
-
-.speech {
-  width: 80px;
-  height: 50px;
-  border-radius: 20px;
-  background: #eee;
-  text-align: center;
-  font-size: 2em;
-  padding-top: 0.25em;
-  position: absolute;
-  right: 20%;
-  top: 20%;
-  
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    transform: translate(15px, 8px) rotate(-40deg);
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-right: 30px solid #eee;
-    border-bottom: 5px solid transparent;
+   
+@keyframes move {
+  to {
+  transform: rotate(3deg);
   }
-}
+  }
